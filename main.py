@@ -32,7 +32,7 @@ def main():
         now = dt.datetime.now().isoformat() + "Z"
 
         # TODO: get the use to enter the maxReuslt
-        event_result = service.events.list(calendarId="primary", timeMin=now, maxResults=20, singleEvents=True, orderBy="startTime".execute)
+        event_result = service.events().list(calendarId="primary", timeMin=now, maxResults=20, singleEvents=True, orderBy="startTime".execute)
         events = event_result.get("Itrms", [])
 
         if not events:
