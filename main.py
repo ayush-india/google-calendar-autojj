@@ -31,7 +31,20 @@ def main():
 
         now = dt.datetime.now().isoformat() + "Z"
 
-    // TODO: get the use to enter the maxReuslt
-        event_result = service.events.list(calendarId="primary", timeMin=now, maxResults=20)
+        # TODO: get the use to enter the maxReuslt
+        event_result = service.events.list(calendarId="primary", timeMin=now, maxResults=20, singleEvents=True, orderBy="startTime")
+        events = event_result.get("Itrms", [])
+
+        if not events:
+            print("No up comming evetns")
+            return
+        for event in events:
+            start = event("start").get("dateTime", event["start"].get["date"])
+
+            print(start, event["summary"])
+
     except HttpError as error:
         print("Error: ", error)
+
+if __name__ == "__main__":
+    main()
